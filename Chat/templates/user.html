@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+{% for user in users %}
+    <p> <img src="{{MEDIA_URL}}{{ user.avatar.url}}" width="100" height="90"> </p>
+   <p> {{user.username}} </p>
+    <p> {{user.about}} </p>
+{% endfor %}
+</body>
+</html>

@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title> Simple SignUp/SignIn app</title>
+    </head>
+    <body>
+        <div>
+            <h1>Страница авторизованного пользователя {{request.user.username}}</h1>
+        </div>
+        {% block content %}
+        <p> <img src="{{MEDIA_URL}}{{ request.user.avatar.url}}" width="200" height="180"> </p>
+        <p> {{ request.user.about }} </p>
+        <a href="{% url 'edit_user' user.id %}"><u>Редактировать</u>
+        {% endblock %}
+        <button> <a href="/sign/logout"> Выход </a></button>
+    </body>
+</html>
