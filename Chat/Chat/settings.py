@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels', #для работы django-channels
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -136,3 +137,6 @@ MEDIA_URL = '/media/'
 
 LOGIN_URL = 'sign/login/'
 LOGIN_REDIRECT_URL = '/'
+
+
+ASGI_APPLICATION = 'Chat.asgi.application' #Для работы django-channels
