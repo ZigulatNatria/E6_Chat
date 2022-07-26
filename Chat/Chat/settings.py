@@ -140,3 +140,13 @@ LOGIN_REDIRECT_URL = '/'
 
 
 ASGI_APPLICATION = 'Chat.asgi.application' #Для работы django-channels
+
+#для работы слоёв django-channels
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
