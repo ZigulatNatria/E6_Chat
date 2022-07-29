@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import viewsets
 from .models import Message, Room, User
-from .serializers import UserSerializer
+from .serializers import UserSerializer, RoomSerializer, MessageSerializer
 from django.views.generic import DetailView, ListView, UpdateView
 from django.urls import reverse_lazy
 from .forms import UserEditForm
@@ -36,6 +36,16 @@ def room(request, room_name):
     })
 
 
-class UserAPIView(generics.ListAPIView):
-    queryset = User.objects.all()
+class UserAPIView(viewsets.ModelViewSet):
+    queryset = User.objects.all().order_by('username')
     serializer_class = UserSerializer
+
+
+class RoomAPIView(viewsets.ModelViewSet):
+    queryset = Room.objects.all().order_by('name')
+    serializer_class = RoomSerializer
+
+
+class MessageAPIView(viewsets.ModelViewSet):
+    queryset = Room.objects.all().order_by('message')
+    serializer_class = MessageSerializer

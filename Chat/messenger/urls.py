@@ -1,8 +1,16 @@
-from django.urls import path
-from .views import UserAPIView, UserListView, UserEditView, index, room
+from django.urls import path, include
+from .views import UserAPIView, RoomAPIView, MessageAPIView, UserListView, UserEditView, index, room
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'user', UserAPIView)
+router.register(r'room', RoomAPIView)
+router.register(r'message', MessageAPIView)
+
 
 urlpatterns = [
-    path('api/v1/user/', UserAPIView.as_view()),
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     # path('<int:pk>/', UserView.as_view(), name='user_detail'),
     path('users', UserListView.as_view(), name='users'),
     path('<int:pk>/edit', UserEditView.as_view(), name='edit_user'),
