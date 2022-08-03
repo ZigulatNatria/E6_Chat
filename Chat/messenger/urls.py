@@ -1,5 +1,6 @@
 from django.urls import path, include
-from .views import UserAPIView, RoomAPIView, MessageAPIView, UserListView, UserEditView, index, room
+from .views import UserAPIView, RoomAPIView, MessageAPIView, UserListView, UserEditView, index, room, \
+    MessageListView,RoomDetail
 from rest_framework import routers
 
 router = routers.DefaultRouter()
@@ -16,4 +17,6 @@ urlpatterns = [
     path('<int:pk>/edit', UserEditView.as_view(), name='edit_user'),
     path('', index, name='chat'),
     path('<str:room_name>/', room, name='room'),   # путь для комнаты чата
+    path('messages', MessageListView.as_view(), name='messages'),
+    path('myroom/<int:pk>', RoomDetail.as_view(), name='roomm')
 ]

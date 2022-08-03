@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from rest_framework import viewsets
 from .models import Message, Room, User
 from .serializers import UserSerializer, RoomSerializer, MessageSerializer
-from django.views.generic import DetailView, ListView, UpdateView
+from django.views.generic import DetailView, ListView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .forms import UserEditForm
 
@@ -34,6 +34,20 @@ def room(request, room_name):
     return render(request, 'room.html', {
         'room_name': room_name
     })
+
+
+class MessageListView(ListView):
+    model = User
+    context_object_name = 'messages'
+    template_name = 'messages.html'
+    queryset = Message.objects.all()
+
+
+class RoomDetail(DetailView):
+    model = Room
+    template_name = 'room_detail.html'
+    context_object_name = 'roomm'
+    queryset = Room.objects.all()
 
 
 class UserAPIView(viewsets.ModelViewSet):
