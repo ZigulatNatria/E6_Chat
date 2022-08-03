@@ -131,7 +131,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'messenger.User'
+AUTH_USER_MODEL = 'messenger.User'  #перекинул для функционирования авторизации и регистрации через кастомного User
 # AUTH_USER_MODEL = 'auth.User'
 
 
