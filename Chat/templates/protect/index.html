@@ -13,6 +13,9 @@
         {% endblock %}
         <div>
         <button> <a href="/sign/logout"> Выход </a></button>
-        <button> <a href="/chat"> Чат </a></button>
+        <button> <a href="/chat/{{request.user.username}}"> Мои сообщения </a></button>
+        <button> <a href="/chat/users"> Все пользователи </a></button>
+        <button> <a href="/chat/roomcreated"> Создать комнату </a></button>
+        <button> <a href="/chat/rooms"> Список комнат </a></button>
     </body>
 </html>

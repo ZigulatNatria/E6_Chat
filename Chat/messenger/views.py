@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect, reverse
 from rest_framework import viewsets
 from .models import Message, Room, User
 from .serializers import UserSerializer, RoomSerializer, MessageSerializer
-from django.views.generic import DetailView, ListView, UpdateView, DeleteView
+from django.views.generic import DetailView, ListView, UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
-from .forms import UserEditForm
+from .forms import UserEditForm, RoomCreatedForm
 
 # class UserView(DetailView):
 #     model = User
@@ -24,6 +24,20 @@ class UserEditView(UpdateView):
     template_name = 'edit_user.html'
     form_class = UserEditForm
     success_url = '/'
+
+
+class RoomCreatedView(CreateView):
+    model = Room
+    template_name = 'room_create.html'
+    form_class = RoomCreatedForm
+    success_url = '/chat/rooms'
+
+
+class RoomListView(ListView):
+    model = Room
+    context_object_name = 'rooms'
+    template_name = 'rooms.html'
+    queryset = Room.objects.all()
 
 
 def index(request):
