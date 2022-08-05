@@ -15,7 +15,7 @@ from .forms import UserEditForm, RoomCreatedForm
 class UserListView(ListView):
     model = User
     context_object_name = 'users'
-    template_name = 'user.html'
+    template_name = 'users.html'
     queryset = User.objects.all()
 
 
